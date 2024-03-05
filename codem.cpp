@@ -21,3 +21,9 @@ Debug& operator<<(Debug& debug, const WavAudioFormat value) {
                 return;
             }
 //hello
+   if(hasBigEndianData != Utility::Endianness::isBigEndian())
+        Utility::Endianness::swapInPlace(
+            formatChunk->chunk.chunkSize, formatChunk->audioFormat,
+            formatChunk->numChannels, formatChunk->sampleRate,
+            formatChunk->byteRate, formatChunk->blockAlign,
+            formatChunk->bitsPerSample);
